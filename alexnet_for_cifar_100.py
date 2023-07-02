@@ -15,7 +15,6 @@ from keras.preprocessing.image import ImageDataGenerator
 import tensorflow as tf
 import tensorflow.keras.layers as tfl
 from keras import backend as K
-
 from tensorflow.keras.datasets import cifar100
 
 (X_train, y_train), (X_test, y_test) = cifar100.load_data(label_mode='coarse')
