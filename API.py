@@ -1,17 +1,18 @@
 from flask import Flask,request
 import pandas as pd
 import numpy as np
-import pickle
 from flasgger import Swagger
-import matplotlib.pyplot as plt
-from alexnet_for_cifar_100 import Sample
+import tensorflow as tf
+from PIL import Image
+import os
 
 app=Flask(__name__) # it's a common step to start with this
 Swagger(app) # pass the App to Swagger
 
-# unpickle the object from the pickle file
-pickle_in=open('C:/Users/Diaa Essam/OneDrive/Documents/Python/.vscode/CIFAR_Recognizer_API/Classifier.pkl','rb') # Reading pickle file
-classifier=pickle.load(pickle_in) # taking back the object from the file
+current_directory = os.path.abspath(os.path.dirname(__file__))
+model_path = os.path.join(current_directory, "model")
+
+classifier=tf.keras.models.load_model(model_path)
 
 @app.route('/') # must be written to define the root page or main page to display
 # this will display a web page having welcome all in it
@@ -38,7 +39,11 @@ def predict_A_sample():
     """
     image=request.files.get("image")
 
-    prediction=classifier.predict(image)
+    image = Image.open(image)
+    image = np.array(image.resize((224, 224)))
+    image = image.reshape((1, 224, 224,3))
+
+    prediction=np.argmax(tf.nn.softmax(classifier.predict(image)[0]))
     return "The digit is: " + str(prediction)
 
 # a page for predicting csv file, can be used through Postman
@@ -58,8 +63,10 @@ def predict_A_File():
         200:
             description: The output values
     """
-    df_test=pd.read_csv(request.files.get("file")) # must be done through Postman
-    prediction=classifier.predict_file(df_test)
+    df_test=pd.read_csv(request.files.get("file")) 
+    test_data=np.array(df_test)
+    test_data=test_data.reshape(test_data.shape[0],224,224,3)
+    prediction=classifier.predict(test_data)
     return "The digits are: " + str(list(prediction))
 
 
