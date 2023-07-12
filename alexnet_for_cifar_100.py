@@ -56,13 +56,13 @@ def arch(input_shape):
     layer=tfl.Conv2D(filters= 96 , kernel_size= 11,strides=(4, 4))(input_img)
     layer=tfl.ReLU()(layer)
     layer=tfl.MaxPool2D(pool_size=(3, 3), strides=(2, 2), padding='same')(layer)
-    layer=tfl.BatchNormalization()(layer,training=True)
+    layer=tfl.BatchNormalization(axis=3)(layer,training=True)
 
     layer=tfl.Conv2D(filters= 256 , kernel_size= 5 ,strides=(1, 1), padding='same', kernel_regularizer=regularizers.L1(0.001),
                      activity_regularizer=regularizers.L2(0.001))(layer)
     layer=tfl.ReLU()(layer)
     layer=tfl.MaxPool2D(pool_size=(3, 3), strides=(2,2), padding='same')(layer)
-    layer=tfl.BatchNormalization()(layer,training=True)
+    layer=tfl.BatchNormalization(axis=3)(layer,training=True)
 
     layer=tfl.Conv2D(filters= 384 , kernel_size= 3 ,strides=(1, 1), padding='same', kernel_regularizer=regularizers.L1(0.001),
                      activity_regularizer=regularizers.L2(0.001))(layer)
@@ -73,7 +73,7 @@ def arch(input_shape):
     layer=tfl.Conv2D(filters= 256 , kernel_size= 3 ,strides=(1, 1), padding='same')(layer)
     layer=tfl.ReLU()(layer)
     layer=tfl.MaxPool2D(pool_size=(3, 3), strides=(2,2), padding='same')(layer)
-    layer=tfl.BatchNormalization()(layer,training=True)
+    layer=tfl.BatchNormalization(axis=3)(layer,training=True)
 
     layer=tfl.Flatten()(layer)
 
