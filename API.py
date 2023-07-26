@@ -67,7 +67,7 @@ def predict_A_sample():
     print(image.shape)
 
     prediction=np.argmax(tf.nn.softmax(classifier.predict(image)[0]))
-    return "The digit is: " + classes[prediction]
+    return "The coarse is: " + classes[prediction]
 
 # a page for predicting csv file, can be used through Postman
 @app.route('/predict_file',methods=["POST"])
@@ -90,7 +90,7 @@ def predict_A_File():
     test_data=np.array(df_test)
     test_data=test_data.reshape(test_data.shape[0],224,224,3)
     prediction=classifier.predict(test_data)
-    return "The digits are: " + str(list(prediction))
+    return "The coarses are: " + str(list(prediction))
 
 
 
