@@ -10,7 +10,7 @@ app=Flask(__name__) # it's a common step to start with this
 Swagger(app) # pass the App to Swagger
 
 current_directory = os.path.abspath(os.path.dirname(__file__))
-model_path = os.path.join(current_directory, "model.h5")
+model_path = os.path.join(current_directory, "model")
 
 classifier=tf.keras.models.load_model(model_path)
 

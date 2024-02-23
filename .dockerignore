@@ -1,0 +1,4 @@
+.ipynb
+alexnet_for_cifar_100.py
+resnet_50_for_cifar_100.py
+transfer_learning_on_cifar_100.py
