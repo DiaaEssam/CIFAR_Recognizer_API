@@ -1,31 +1,74 @@
-# CIFAR 100 Recognizier
+# CIFAR-100 Image Classification
 
-## Description
-The project is a Python-based application that implements an API for performing various tasks related to image classification using deep learning models. It provides functionalities for training and evaluating models such as AlexNet, ResNet-50, and transfer learning on the CIFAR-100 dataset.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Model](#model)
+- [License](#license)
 
-## Project Structure
-- `API.py`: The main file that defines the Flask API and contains the endpoints for the application.
-- `alexnet_for_cifar_100.py`: File containing the implementation of the AlexNet model for CIFAR-100 dataset.
-- `resnet_50_for_cifar_100.py`: File containing the implementation of the ResNet-50 model for CIFAR-100 dataset.
-- `transfer_learning_on_cifar_100.py`: File containing the implementation of transfer learning on the CIFAR-100 dataset.
-- `requirements.txt`: File specifying the dependencies required to run the application.
-- `Dockerfile.txt`: File containing the Dockerfile instructions for containerizing the application.
+## Installation
 
-## Getting Started
-1. Clone the repository: `git clone <repository-url>`
-2. Install the required dependencies: `pip install -r requirements.txt`
-3. Run the application: `python API.py`
-4. Access the API endpoints at `http://localhost:5000`
+To run the project, make sure you have the following dependencies installed:
+
+- Python 3.6 or higher
+- TensorFlow 2.0 or higher
+- Keras 2.3 or higher
+- NumPy
+- Pandas
+- Pillow
+- scikit-learn
+- Flask
+- Flasgger
+
+You can install the required dependencies by running the following command:
+
+```
+pip install -r requirements.txt
+```
 
 ## Usage
-- Use the provided API endpoints to perform tasks such as model training, evaluation, and inference.
-- Refer to the documentation in the respective Python files for more details on the implementation of each model and the available endpoints.
 
-## Resources
-- [CIFAR-100 Dataset](https://www.cs.toronto.edu/~kriz/cifar.html)
-- [Flask](https://flask.palletsprojects.com/)
-- [TensorFlow](https://www.tensorflow.org/)
-- [Keras](https://keras.io/)
+1. Run the Flask API:
+
+```
+python API.py
+```
+
+2. Access the Swagger UI by opening the following URL in your browser:
+
+```
+http://localhost:5000/apidocs/
+```
+
+3. Use the Swagger UI to interact with the API. You can predict the coarse label of a single image or a CSV file containing multiple images.
+
+## Model
+
+The model used in this project is based on the AlexNet architecture. It has been trained on the CIFAR-100 dataset, which consists of 50,000 training images and 10,000 test images. The model achieves an accuracy of XX% on the test set.
+
+The 20 coarse labels predicted by the model are as follows:
+- Aquatic mammals
+- Fish
+- Flowers
+- Food containers
+- Fruit and vegetables
+- Household electrical devices
+- Household furniture
+- Insects
+- Large carnivores
+- Large man-made outdoor things
+- Large natural outdoor scenes
+- Large omnivores and herbivores
+- Medium-sized mammals
+- Non-insect invertebrates
+- People
+- Reptiles
+- Small mammals
+- Trees
+- Vehicles 1
+- Vehicles 2
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+Feel free to explore and modify the code to suit your needs. Contributions are welcome!
